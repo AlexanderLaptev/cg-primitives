@@ -35,7 +35,7 @@ class Cloud : Drawable {
 //        g.transform.setToRotation(angle.toDouble())
         for (circle in circles) {
             with(circle) {
-                g.fillOval(originX + minX, originY + minY, diameter, diameter)
+                g.fillCircle(originX, originY, radius)
             }
         }
     }
