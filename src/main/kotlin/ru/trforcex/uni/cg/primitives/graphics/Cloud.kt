@@ -1,5 +1,6 @@
 package ru.trforcex.uni.cg.primitives.graphics
 
+import ru.trforcex.uni.cg.primitives.util.fillCircle
 import java.awt.Color
 import java.awt.Graphics2D
 import java.util.*
@@ -8,9 +9,8 @@ import kotlin.random.nextInt
 
 class Cloud : Drawable {
     companion object {
-        private val CIRCLE_COUNT_RANGE = 3..7
-        private val RADIUS_RANGE = 20..50
-        private val OFFSET_RANGE = 40..50
+        private val CIRCLE_COUNT_RANGE = 4..6
+        private val RADIUS_RANGE = 50..80
 
         private val COLOR = Color.WHITE
     }
@@ -18,25 +18,37 @@ class Cloud : Drawable {
     private val circles: MutableList<Circle> = LinkedList()
 
     init {
-        // Generate circles.
-        val circleCount = Random.nextInt(CIRCLE_COUNT_RANGE)
-        var x = 0
-        var y = 0
-        repeat(circleCount) {
-            val circle = Circle(x, y, Random.nextInt(RADIUS_RANGE))
-            x = Random.nextInt(OFFSET_RANGE)
-            y = Random.nextInt(OFFSET_RANGE) * if (Random.nextBoolean()) 1 else -1
-            circles += circle
+        generateCircles()
+    }
+
+    private fun generateCircles() {
+        val count = Random.nextInt(CIRCLE_COUNT_RANGE) - 1
+        var up = Random.nextBoolean()
+        var lastCircle = Circle(0, 0, Random.nextInt(RADIUS_RANGE))
+        circles += lastCircle
+
+        repeat(count) {
+            val radius = Random.nextInt(RADIUS_RANGE)
+            val offsetX = Random.nextInt(lastCircle.radius, lastCircle.radius + radius / 2 + 1)
+            val offsetY =
+                (if (up) -1 else 1) * Random.nextInt(RADIUS_RANGE.first / 2, lastCircle.radius / 2 + 1)
+            val newCircle = Circle(lastCircle.x + offsetX, lastCircle.y + offsetY, radius)
+            lastCircle = newCircle
+            up = !up
+            circles += lastCircle
         }
     }
 
     override fun draw(g: Graphics2D, originX: Int, originY: Int, angle: Float) {
         g.color = COLOR
-//        g.transform.setToRotation(angle.toDouble())
+
+        val oldTransform = g.transform
+        g.rotate(Math.toRadians(angle.toDouble()))
         for (circle in circles) {
             with(circle) {
-                g.fillCircle(originX, originY, radius)
+                g.fillCircle(originX + x, originY + y, radius)
             }
         }
+        g.transform = oldTransform
     }
 }
