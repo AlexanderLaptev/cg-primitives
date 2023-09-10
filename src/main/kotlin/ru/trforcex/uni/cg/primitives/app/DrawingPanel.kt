@@ -1,0 +1,21 @@
+package ru.trforcex.uni.cg.primitives.app
+
+import ru.trforcex.uni.cg.primitives.util.clear
+import java.awt.Color
+import java.awt.Graphics
+import java.awt.Graphics2D
+import javax.swing.JPanel
+
+class DrawingPanel : JPanel() {
+    companion object {
+        val BACKGROUND_COLOR: Color = Color.decode("#dbc7a2")
+    }
+
+    override fun paintComponent(g: Graphics?) {
+        g as Graphics2D
+
+        super.paintComponents(g)
+        g.background = BACKGROUND_COLOR
+        clear(g)
+    }
+}
