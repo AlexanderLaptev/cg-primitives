@@ -11,12 +11,12 @@ class DrawingApplication : JFrame("My Drawing Application") {
         /**
          * The width of the window in pixels.
          */
-        const val WINDOW_WIDTH = 640
+        const val WINDOW_WIDTH = 1280
 
         /**
          * The height of the window in pixels.
          */
-        const val WINDOW_HEIGHT = 360
+        const val WINDOW_HEIGHT = 720
     }
 
     init {
