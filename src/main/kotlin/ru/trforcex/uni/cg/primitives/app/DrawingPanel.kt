@@ -1,5 +1,6 @@
 package ru.trforcex.uni.cg.primitives.app
 
+import ru.trforcex.uni.cg.primitives.graphics.Cloud
 import ru.trforcex.uni.cg.primitives.util.clearComponentArea
 import ru.trforcex.uni.cg.primitives.util.setAntialiasingEnabled
 import java.awt.Color
@@ -11,6 +12,8 @@ import javax.swing.JPanel
  * A panel which draws custom graphics.
  */
 class DrawingPanel : JPanel() {
+    private val cloud = Cloud()
+
     companion object {
         /**
          * The background color.
@@ -25,5 +28,6 @@ class DrawingPanel : JPanel() {
         g.setAntialiasingEnabled(true)
         g.background = BACKGROUND_COLOR
         g.clearComponentArea(this)
+        cloud.draw(g, 200, 200, 0.0f)
     }
 }
