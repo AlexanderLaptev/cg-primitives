@@ -6,8 +6,14 @@ import java.awt.Graphics
 import java.awt.Graphics2D
 import javax.swing.JPanel
 
+/**
+ * A panel which draws custom graphics.
+ */
 class DrawingPanel : JPanel() {
     companion object {
+        /**
+         * The background color.
+         */
         val BACKGROUND_COLOR: Color = Color.decode("#dbc7a2")
     }
 

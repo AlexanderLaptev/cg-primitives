@@ -6,6 +6,9 @@ import java.awt.Graphics
 import java.awt.Graphics2D
 import javax.swing.JFrame
 
+/**
+ * The main class of the drawing application.
+ */
 class DrawingApplication : JFrame("My Drawing Application") {
     init {
         setSize(640, 360)
