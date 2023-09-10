@@ -22,8 +22,9 @@ class DrawingPanel : JPanel() {
         g as Graphics2D
 
         super.paintComponents(g)
-        setAntialiasingEnabled(g, true)
+        g.setAntialiasingEnabled(true)
         g.background = BACKGROUND_COLOR
         clear(g)
+        g.clearComponentArea(this)
     }
 }

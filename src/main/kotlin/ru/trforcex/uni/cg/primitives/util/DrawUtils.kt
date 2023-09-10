@@ -5,17 +5,17 @@ import java.awt.Graphics2D
 import java.awt.RenderingHints
 
 /**
- * Clears the area of the [Component].
+ * Clears the area of the [component] with the current background color.
  */
-fun Component.clear(g: Graphics2D) {
-    g.clearRect(0, 0, width, height)
+fun Graphics2D.clearComponentArea(component: Component) {
+    clearRect(0, 0, component.width, component.height)
 }
 
 /**
  * Enables or disables antialiasing.
  */
-fun Component.setAntialiasingEnabled(g: Graphics2D, enabled: Boolean) {
-    g.setRenderingHint(
+fun Graphics2D.setAntialiasingEnabled(enabled: Boolean) {
+    setRenderingHint(
         RenderingHints.KEY_ANTIALIASING,
         if (enabled) RenderingHints.VALUE_ANTIALIAS_ON else RenderingHints.VALUE_ANTIALIAS_OFF
     )
