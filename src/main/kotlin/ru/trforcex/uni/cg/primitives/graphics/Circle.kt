@@ -16,4 +16,14 @@ data class Circle(
      * Calculates the diameter of the circle.
      */
     val diameter get() = radius * 2
+
+    /**
+     * Calculates the x coordinate of the upper-left corner of the circle.
+     */
+    val minX get() = x - radius
+
+    /**
+     * Calculates the y coordinate of the upper-left corner of the circle.
+     */
+    val minY get() = y - radius
 }
