@@ -1,9 +1,6 @@
 package ru.trforcex.uni.cg.primitives.app
 
 import java.awt.BorderLayout
-import java.awt.Color
-import java.awt.Graphics
-import java.awt.Graphics2D
 import javax.swing.JFrame
 
 /**
