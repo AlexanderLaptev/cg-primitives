@@ -24,5 +24,6 @@ class DrawingApplication : JFrame("My Drawing Application") {
         defaultCloseOperation = EXIT_ON_CLOSE
         isResizable = false
         add(DrawingPanel(), BorderLayout.CENTER)
+        setLocationRelativeTo(null) // Center the window.
     }
 }
