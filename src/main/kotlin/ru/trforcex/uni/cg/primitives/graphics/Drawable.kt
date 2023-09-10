@@ -6,5 +6,12 @@ import java.awt.Graphics2D
  * An object which can be drawn using [Graphics2D].
  */
 interface Drawable {
-    fun draw(g: Graphics2D, originX: Int, originY: Int, angle: Float)
+    /**
+     * Draws this object.
+     *
+     * @param g The graphics.
+     * @param originX The x coordinate of the object origin.
+     * @param originY The y coordinate of the object origin.
+     */
+    fun draw(g: Graphics2D, originX: Int, originY: Int)
 }

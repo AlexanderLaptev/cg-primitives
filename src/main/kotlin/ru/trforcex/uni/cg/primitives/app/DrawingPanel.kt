@@ -28,6 +28,6 @@ class DrawingPanel : JPanel() {
         g.setAntialiasingEnabled(true)
         g.background = BACKGROUND_COLOR
         g.clearComponentArea(this)
-        cloud.draw(g, 100, 100, 45.0f)
+        cloud.draw(g, 100, 100)
     }
 }

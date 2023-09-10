@@ -39,16 +39,12 @@ class Cloud : Drawable {
         }
     }
 
-    override fun draw(g: Graphics2D, originX: Int, originY: Int, angle: Float) {
+    override fun draw(g: Graphics2D, originX: Int, originY: Int) {
         g.color = COLOR
-
-        val oldTransform = g.transform
-        g.rotate(Math.toRadians(angle.toDouble()))
         for (circle in circles) {
             with(circle) {
                 g.fillCircle(originX + x, originY + y, radius)
             }
         }
-        g.transform = oldTransform
     }
 }
