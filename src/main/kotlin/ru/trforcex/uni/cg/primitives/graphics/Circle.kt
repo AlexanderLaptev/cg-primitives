@@ -12,5 +12,8 @@ data class Circle(
     var y: Int,
     var radius: Int
 ) {
+    /**
+     * Calculates the diameter of the circle.
+     */
     val diameter get() = radius * 2
 }
