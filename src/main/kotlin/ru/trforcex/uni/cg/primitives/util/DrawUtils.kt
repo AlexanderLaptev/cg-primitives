@@ -2,6 +2,7 @@ package ru.trforcex.uni.cg.primitives.util
 
 import java.awt.Component
 import java.awt.Graphics2D
+import java.awt.Polygon
 import java.awt.RenderingHints
 
 /**
@@ -71,4 +72,21 @@ fun Graphics2D.fillOvalCentered(centerX: Int, centerY: Int, width: Int, height: 
     val halfWidth = width / 2
     val halfHeight = height / 2
     fillOval(centerX - halfWidth, centerY - halfHeight, width, height)
+}
+
+/**
+ * Fills the specified polygon, offsetting all of its vertices by the specified amount.
+ *
+ * @param polygon The polygon to fill.
+ * @param offsetX The x offset.
+ * @param offsetY The y offset.
+ */
+fun Graphics2D.fillPolygonOffset(polygon: Polygon, offsetX: Int, offsetY: Int) {
+    val xPoints = IntArray(polygon.xpoints.size)
+    val yPoints = IntArray(polygon.ypoints.size)
+    for (i in xPoints.indices) {
+        xPoints[i] += polygon.xpoints[i] + offsetX
+        yPoints[i] += polygon.ypoints[i] + offsetY
+    }
+    fillPolygon(xPoints, yPoints, polygon.npoints)
 }
