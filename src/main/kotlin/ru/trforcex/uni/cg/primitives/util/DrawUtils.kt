@@ -1,6 +1,5 @@
 package ru.trforcex.uni.cg.primitives.util
 
-import ru.trforcex.uni.cg.primitives.graphics.Circle
 import java.awt.Component
 import java.awt.Graphics2D
 import java.awt.RenderingHints

@@ -1,4 +1,4 @@
-package ru.trforcex.uni.cg.primitives.graphics
+package ru.trforcex.uni.cg.primitives.util
 
 /**
  * A circle with a specified origin and radius.

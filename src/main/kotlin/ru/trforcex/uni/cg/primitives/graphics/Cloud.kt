@@ -1,5 +1,6 @@
 package ru.trforcex.uni.cg.primitives.graphics
 
+import ru.trforcex.uni.cg.primitives.util.Circle
 import ru.trforcex.uni.cg.primitives.util.fillCircle
 import java.awt.Color
 import java.awt.Component
