@@ -16,14 +16,12 @@ class DrawingPanel : JPanel() {
     private val monitor = Monitor()
 
     companion object {
-        val BACKGROUND_COLOR: Color = Color.decode("#dbc7a2")
-        val SKY_COLOR: Color = Color.decode("#a1c3ed")
+        private val BACKGROUND_COLOR: Color = Color.decode("#dbc7a2")
+        private val SKY_COLOR: Color = Color.decode("#a1c3ed")
+        private val TABLE_COLOR: Color = Color.decode("#a38967")
 
-        const val TABLE_HEIGHT = 140
-        const val TABLE_OFFSET = 200
-
-        const val HALF_MONITOR_WIDTH = 350 / 2
-        const val HALF_MONITOR_HEIGHT = HALF_MONITOR_WIDTH / 16 * 9
+        private const val TABLE_HEIGHT = 140
+        private const val TABLE_OFFSET = 200
     }
 
     private lateinit var tablePolygon: Polygon
@@ -39,16 +37,10 @@ class DrawingPanel : JPanel() {
     }
 
     private fun drawStuff(g: Graphics2D) {
-        // Do maths
         val centerX = width / 2
         val centerY = height / 2
 
-        // Draw table
-        if (!this::tablePolygon.isInitialized) updateTablePolygon()
-        g.color = Color.decode("#a38967")
-        g.fillPolygon(tablePolygon)
-
-        // Draw monitor
+        drawTable(g)
         monitor.draw(g, this, centerX, centerY)
     }
 
@@ -63,5 +55,11 @@ class DrawingPanel : JPanel() {
             intArrayOf(height, height - TABLE_HEIGHT, height - TABLE_HEIGHT, height),
             4
         )
+    }
+
+    private fun drawTable(g: Graphics2D) {
+        if (!this::tablePolygon.isInitialized) updateTablePolygon()
+        g.color = TABLE_COLOR
+        g.fillPolygon(tablePolygon)
     }
 }
