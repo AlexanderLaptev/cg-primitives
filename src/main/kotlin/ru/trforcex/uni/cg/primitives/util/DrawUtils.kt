@@ -12,12 +12,16 @@ fun Graphics2D.clearComponentArea(component: Component) {
 }
 
 /**
- * Enables or disables antialiasing.
+ * Enables or disables antialiasing for both the geometry and text.
  */
 fun Graphics2D.setAntialiasingEnabled(enabled: Boolean) {
     setRenderingHint(
         RenderingHints.KEY_ANTIALIASING,
         if (enabled) RenderingHints.VALUE_ANTIALIAS_ON else RenderingHints.VALUE_ANTIALIAS_OFF
+    )
+    setRenderingHint(
+        RenderingHints.KEY_TEXT_ANTIALIASING,
+        if (enabled) RenderingHints.VALUE_TEXT_ANTIALIAS_ON else RenderingHints.VALUE_TEXT_ANTIALIAS_OFF
     )
 }
 
