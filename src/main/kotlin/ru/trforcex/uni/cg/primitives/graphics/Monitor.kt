@@ -35,11 +35,18 @@ class Monitor : Drawable {
         // Calculations
         val caseBottom = originY + HEIGHT / 2
 
-        // Draw case
+        drawCase(g, originX, originY)
+        drawScreen(g, originX, originY)
+        drawBase(g, originX, caseBottom)
+        drawStand(g, originX, caseBottom)
+    }
+
+    private fun drawCase(g: Graphics2D, originX: Int, originY: Int) {
         g.color = CASE_COLOR
         g.fillRectCentered(originX, originY, WIDTH, HEIGHT)
+    }
 
-        // Draw screen
+    private fun drawScreen(g: Graphics2D, originX: Int, originY: Int) {
         g.color = SCREEN_COLOR
         g.fillRectCentered(
             originX,
@@ -47,12 +54,14 @@ class Monitor : Drawable {
             SCREEN_WIDTH,
             SCREEN_HEIGHT
         )
+    }
 
-        // Draw base
+    private fun drawBase(g: Graphics2D, originX: Int, caseBottom: Int) {
         g.color = BASE_COLOR
         g.fillOvalCentered(originX, caseBottom + STAND_HEIGHT + BASE_Y_OFFSET, BASE_WIDTH, BASE_HEIGHT)
+    }
 
-        // Draw stand
+    private fun drawStand(g: Graphics2D, originX: Int, caseBottom: Int) {
         g.color = STAND_COLOR
         g.fillRectCentered(originX, caseBottom + STAND_WIDTH / 2, STAND_HEIGHT, STAND_WIDTH)
     }
