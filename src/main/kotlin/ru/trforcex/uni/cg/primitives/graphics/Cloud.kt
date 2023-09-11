@@ -2,6 +2,7 @@ package ru.trforcex.uni.cg.primitives.graphics
 
 import ru.trforcex.uni.cg.primitives.util.fillCircle
 import java.awt.Color
+import java.awt.Component
 import java.awt.Graphics2D
 import java.util.*
 import kotlin.random.Random
@@ -39,7 +40,7 @@ class Cloud : Drawable {
         }
     }
 
-    override fun draw(g: Graphics2D, originX: Int, originY: Int) {
+    override fun draw(g: Graphics2D, c: Component, originX: Int, originY: Int) {
         g.color = COLOR
         for (circle in circles) {
             with(circle) {
