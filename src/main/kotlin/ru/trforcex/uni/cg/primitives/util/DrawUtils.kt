@@ -44,8 +44,8 @@ fun Graphics2D.fillCircle(centerX: Int, centerY: Int, radius: Int) {
 /**
  * Fills the specified rectangle.
  *
- * @param centerX The x coordinate of the center of the rectangle.
- * @param centerY The y coordinate of the center of the rectangle.
+ * @param centerX The x coordinate of the center.
+ * @param centerY The y coordinate of the center.
  * @param width The width of the rectangle.
  * @param height The height of the rectangle.
  */
@@ -53,4 +53,18 @@ fun Graphics2D.fillRectCentered(centerX: Int, centerY: Int, width: Int, height: 
     val halfWidth = width / 2
     val halfHeight = height / 2
     fillRect(centerX - halfWidth, centerY - halfHeight, width, height)
+}
+
+/**
+ * Fills the specified oval.
+ *
+ * @param centerX The x coordinate of the center.
+ * @param centerY The y coordinate of the center.
+ * @param width The width of the oval.
+ * @param height The height of the oval.
+ */
+fun Graphics2D.fillOvalCentered(centerX: Int, centerY: Int, width: Int, height: Int) {
+    val halfWidth = width / 2
+    val halfHeight = height / 2
+    fillOval(centerX - halfWidth, centerY - halfHeight, width, height)
 }

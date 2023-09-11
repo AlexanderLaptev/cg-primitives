@@ -1,6 +1,6 @@
 package ru.trforcex.uni.cg.primitives.app
 
-import ru.trforcex.uni.cg.primitives.graphics.Cloud
+import ru.trforcex.uni.cg.primitives.graphics.Monitor
 import ru.trforcex.uni.cg.primitives.util.clearComponentArea
 import ru.trforcex.uni.cg.primitives.util.setAntialiasingEnabled
 import java.awt.Color
@@ -13,14 +13,17 @@ import javax.swing.JPanel
  * A panel which draws custom graphics.
  */
 class DrawingPanel : JPanel() {
-    private val cloud = Cloud()
+    private val monitor = Monitor()
 
     companion object {
         val BACKGROUND_COLOR: Color = Color.decode("#dbc7a2")
-
+        val SKY_COLOR: Color = Color.decode("#a1c3ed")
 
         const val TABLE_HEIGHT = 140
         const val TABLE_OFFSET = 200
+
+        const val HALF_MONITOR_WIDTH = 350 / 2
+        const val HALF_MONITOR_HEIGHT = HALF_MONITOR_WIDTH / 16 * 9
     }
 
     private lateinit var tablePolygon: Polygon
@@ -32,7 +35,6 @@ class DrawingPanel : JPanel() {
         g.setAntialiasingEnabled(true)
         g.background = BACKGROUND_COLOR
         g.clearComponentArea(this)
-        cloud.draw(g, this,100, 100)
         drawStuff(g)
     }
 
@@ -45,6 +47,9 @@ class DrawingPanel : JPanel() {
         if (!this::tablePolygon.isInitialized) updateTablePolygon()
         g.color = Color.decode("#a38967")
         g.fillPolygon(tablePolygon)
+
+        // Draw monitor
+        monitor.draw(g, this, centerX, centerY)
     }
 
     override fun setSize(width: Int, height: Int) {
