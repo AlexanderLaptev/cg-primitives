@@ -41,7 +41,14 @@ class Monitor : Drawable {
         """.trimIndent().lines()
         private val BSOD_FACE_FONT = Font("Segoe UI", Font.PLAIN, 80)
         private val BSOD_MESSAGE_FONT = Font("Segoe UI", Font.PLAIN, 20)
+        private val BSOD_PROGRESS_FONT = Font("Segoe UI", Font.PLAIN, 26)
     }
+
+    private val progressText: String get() {
+        val percent = (progress * 100.0f).toInt()
+        return "$percent% complete"
+    }
+    var progress: Float = 0.0f
 
     override fun draw(g: Graphics2D, c: Component, originX: Int, originY: Int) {
         // Calculations
@@ -63,10 +70,16 @@ class Monitor : Drawable {
         g.drawString(BSOD_TEXT_FACE, x, originY - 40)
 
         // Message
+        var lastY = 0
         g.font = BSOD_MESSAGE_FONT
         for ((i, line) in BSOD_TEXT_MESSAGE_LINES.withIndex()) {
-            g.drawString(line, x, originY + 8 + BSOD_MESSAGE_FONT.size * i)
+            lastY = originY + 8 + BSOD_MESSAGE_FONT.size * i
+            g.drawString(line, x, lastY)
         }
+
+        // Progress
+        g.font = BSOD_PROGRESS_FONT
+        g.drawString(progressText, x, lastY + BSOD_PROGRESS_FONT.size + 6)
     }
 
     private fun drawCase(g: Graphics2D, originX: Int, originY: Int) {
