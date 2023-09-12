@@ -29,6 +29,10 @@ class DrawingPanel : JPanel() {
         private const val KEYBOARD_WIDTH = 360
         private const val KEYBOARD_OFFSET = 40
         private const val KEYBOARD_Y = 300
+
+        private const val KEYBOARD_CORD_THICKNESS = 4
+        private const val KEYBOARD_CORD_WIDTH = 30
+        private val KEYBOARD_CORD_STROKE = BasicStroke(KEYBOARD_CORD_THICKNESS.toFloat())
     }
 
     private lateinit var tablePolygon: Polygon
@@ -50,7 +54,10 @@ class DrawingPanel : JPanel() {
 
         drawTable(g)
         monitor.draw(g, this, centerX, centerY)
-        drawKeyboard(g, centerX - KEYBOARD_WIDTH / 2, centerY + KEYBOARD_HEIGHT / 2 + KEYBOARD_Y)
+
+        val keyboardX = centerX - KEYBOARD_WIDTH / 2
+        val keyboardY = centerY + KEYBOARD_HEIGHT / 2 + KEYBOARD_Y
+        drawKeyboard(g, keyboardX, keyboardY)
     }
 
     override fun setSize(width: Int, height: Int) {
