@@ -48,6 +48,12 @@ class DrawingPanel : JPanel() {
         drawObjects(g)
     }
 
+    override fun doLayout() {
+        super.doLayout()
+        // This method is early enough for us to update all polygons and paths before any rendering occurs.
+        updatePolygonsAndPaths()
+    }
+
     private fun drawObjects(g: Graphics2D) {
         val centerX = width / 2
         val centerY = height / 2
@@ -62,10 +68,10 @@ class DrawingPanel : JPanel() {
 
     override fun setSize(width: Int, height: Int) {
         super.setSize(width, height)
-        updatePolygons()
+        updatePolygonsAndPaths()
     }
 
-    private fun updatePolygons() {
+    private fun updatePolygonsAndPaths() {
         tablePolygon = Polygon(
             intArrayOf(0, TABLE_OFFSET, width - TABLE_OFFSET, width),
             intArrayOf(height, height - TABLE_HEIGHT, height - TABLE_HEIGHT, height),
@@ -76,6 +82,7 @@ class DrawingPanel : JPanel() {
             intArrayOf(0, -KEYBOARD_HEIGHT, -KEYBOARD_HEIGHT, 0),
             4
         )
+        repaint()
     }
 
     private fun drawTable(g: Graphics2D) {
