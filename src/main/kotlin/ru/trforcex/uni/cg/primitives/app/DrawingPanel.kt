@@ -38,6 +38,7 @@ class DrawingPanel : JPanel() {
         private const val KEYBOARD_CORD_WIDTH = 18
         private const val KEYBOARD_CORD_THICKNESS = 5
         private const val KEYBOARD_CORD_EDGE_OFFSET = 22
+        private const val KEYBOARD_CORD_BEND_TIME = 0.74f
         private val KEYBOARD_CORD_STROKE = BasicStroke(
             KEYBOARD_CORD_THICKNESS.toFloat(),
             BasicStroke.CAP_BUTT,
@@ -98,14 +99,17 @@ class DrawingPanel : JPanel() {
         keyboardCordCurve = Path2D.Float().apply {
             val cordTop: Float = (height - TABLE_HEIGHT).toFloat()
             val cordBottom: Float = (centerY + KEYBOARD_Y - KEYBOARD_HEIGHT / 2).toFloat()
+            val cordHeight = cordBottom - cordTop
 
             val cordLeft: Float = (centerX + KEYBOARD_WIDTH / 2 - KEYBOARD_OFFSET - KEYBOARD_CORD_EDGE_OFFSET).toFloat()
             val cordRight: Float = cordLeft + KEYBOARD_CORD_WIDTH
 
+            val yLeft = cordBottom - cordHeight * KEYBOARD_CORD_BEND_TIME
+            val yRight = cordTop + cordHeight * (1.0f - KEYBOARD_CORD_BEND_TIME)
             moveTo(cordLeft, cordBottom)
             curveTo(
-                cordLeft, cordTop,
-                cordRight, cordBottom,
+                cordLeft, yLeft,
+                cordRight, yRight,
                 cordRight, cordTop
             )
         }
