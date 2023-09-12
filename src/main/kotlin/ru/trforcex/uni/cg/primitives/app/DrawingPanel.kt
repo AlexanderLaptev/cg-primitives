@@ -1,5 +1,6 @@
 package ru.trforcex.uni.cg.primitives.app
 
+import ru.trforcex.uni.cg.primitives.graphics.Cup
 import ru.trforcex.uni.cg.primitives.graphics.Monitor
 import ru.trforcex.uni.cg.primitives.graphics.Window
 import ru.trforcex.uni.cg.primitives.util.clearComponentArea
@@ -20,6 +21,7 @@ import javax.swing.JPanel
 class DrawingPanel : JPanel() {
     private val monitor = Monitor()
     private val window = Window()
+    private val cup = Cup()
 
     companion object {
         private val BACKGROUND_COLOR: Color = Color.decode("#dbc7a2")
@@ -43,6 +45,9 @@ class DrawingPanel : JPanel() {
             BasicStroke.CAP_BUTT,
             BasicStroke.JOIN_MITER
         )
+
+        private const val CUP_X = 260
+        private const val CUP_Y_BOTTOM = 120
     }
 
     private var centerX = 0
@@ -82,6 +87,8 @@ class DrawingPanel : JPanel() {
         val keyboardX = centerX - KEYBOARD_WIDTH / 2
         val keyboardY = centerY + KEYBOARD_HEIGHT / 2 + KEYBOARD_Y
         drawKeyboard(g, keyboardX, keyboardY)
+
+        cup.draw(g, this, CUP_X, height - CUP_Y_BOTTOM)
     }
 
     override fun setSize(width: Int, height: Int) {
