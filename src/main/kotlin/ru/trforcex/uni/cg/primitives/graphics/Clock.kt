@@ -10,10 +10,13 @@ import java.awt.Graphics2D
 class Clock : Drawable {
     companion object {
         private val HOUR_ANGLE = Math.toRadians(360.0 / 12.0)
+        private const val HOURS = 12
 
         private const val RADIUS = 70
         private const val FRAME_THICKNESS = 8
         private const val TICK_THICKNESS = 4
+        private const val TICK_EXTRA = 2
+        private const val TICK_LENGTH = 18
 
         private val FRAME_STROKE = BasicStroke(FRAME_THICKNESS.toFloat())
         private val TICK_STROKE = BasicStroke(TICK_THICKNESS.toFloat())
@@ -24,11 +27,11 @@ class Clock : Drawable {
     }
 
     override fun draw(g: Graphics2D, c: Component, originX: Int, originY: Int) {
-        drawClock(g, c, originX, originY)
-        drawTicks(g, c, originX, originY)
+        drawClock(g, originX, originY)
+        drawTicks(g, originX, originY)
     }
 
-    private fun drawClock(g: Graphics2D, c: Component, originX: Int, originY: Int) {
+    private fun drawClock(g: Graphics2D, originX: Int, originY: Int) {
         g.color = CLOCK_COLOR
         g.fillCircle(originX, originY, RADIUS)
 
@@ -38,14 +41,14 @@ class Clock : Drawable {
     }
 
     @Suppress("MagicNumber")
-    private fun drawTicks(g: Graphics2D, c: Component, originX: Int, originY: Int) {
+    private fun drawTicks(g: Graphics2D, originX: Int, originY: Int) {
         val oldTransform = g.transform
 
         g.translate(originX, originY)
         g.color = TICK_COLOR
         g.stroke = TICK_STROKE
-        repeat(12) {
-            g.drawLine(RADIUS - 18, 0, RADIUS - FRAME_THICKNESS + 2, 0)
+        repeat(HOURS) {
+            g.drawLine(RADIUS - TICK_LENGTH, 0, RADIUS - FRAME_THICKNESS + TICK_EXTRA, 0)
             g.rotate(HOUR_ANGLE)
         }
         g.transform = oldTransform
