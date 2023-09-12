@@ -47,6 +47,26 @@ fun Graphics2D.fillCircle(centerX: Int, centerY: Int, radius: Int) {
 }
 
 /**
+ * Draws the specified circle.
+ *
+ * @param circle The circle to fill.
+ */
+fun Graphics2D.drawCircle(circle: Circle) {
+    drawOval(circle.minX, circle.minY, circle.diameter, circle.diameter)
+}
+
+/**
+ * Draws the specified circle.
+ *
+ * @param centerX The x coordinate of the center.
+ * @param centerY The y coordinate of the center.
+ */
+fun Graphics2D.drawCircle(centerX: Int, centerY: Int, radius: Int) {
+    val diameter = 2 * radius
+    drawOval(centerX - radius, centerY - radius, diameter, diameter)
+}
+
+/**
  * Fills the specified rectangle.
  *
  * @param centerX The x coordinate of the center.

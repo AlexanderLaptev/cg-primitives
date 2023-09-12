@@ -1,5 +1,6 @@
 package ru.trforcex.uni.cg.primitives.app
 
+import ru.trforcex.uni.cg.primitives.graphics.Clock
 import ru.trforcex.uni.cg.primitives.graphics.Cup
 import ru.trforcex.uni.cg.primitives.graphics.Monitor
 import ru.trforcex.uni.cg.primitives.graphics.Window
@@ -22,6 +23,7 @@ class DrawingPanel : JPanel() {
     private val monitor = Monitor()
     private val window = Window()
     private val cup = Cup()
+    private val clock = Clock()
 
     companion object {
         private val BACKGROUND_COLOR: Color = Color.decode("#dbc7a2")
@@ -48,6 +50,9 @@ class DrawingPanel : JPanel() {
 
         private const val CUP_X = 260
         private const val CUP_Y_BOTTOM = 120
+
+        private const val CLOCK_X = 940
+        private const val CLOCK_Y = 90
     }
 
     private var centerX = 0
@@ -89,6 +94,7 @@ class DrawingPanel : JPanel() {
         drawKeyboard(g, keyboardX, keyboardY)
 
         cup.draw(g, this, CUP_X, height - CUP_Y_BOTTOM)
+        clock.draw(g, this, CLOCK_X, CLOCK_Y)
     }
 
     override fun setSize(width: Int, height: Int) {
