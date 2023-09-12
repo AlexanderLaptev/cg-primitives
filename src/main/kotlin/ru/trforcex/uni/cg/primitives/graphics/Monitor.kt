@@ -73,7 +73,7 @@ class Monitor : Drawable {
         var lastY = 0
         g.font = BSOD_MESSAGE_FONT
         for ((i, line) in BSOD_TEXT_MESSAGE_LINES.withIndex()) {
-            lastY = originY + 8 + BSOD_MESSAGE_FONT.size * i
+            lastY = originY + 8 + (BSOD_MESSAGE_FONT.size + 3) * i
             g.drawString(line, x, lastY)
         }
 
