@@ -6,10 +6,11 @@ import java.awt.BasicStroke
 import java.awt.Color
 import java.awt.Component
 import java.awt.Graphics2D
-import java.awt.geom.AffineTransform
 
 class Clock : Drawable {
     companion object {
+        private val HOUR_ANGLE = Math.toRadians(360.0 / 12.0)
+
         private const val RADIUS = 70
         private const val FRAME_THICKNESS = 8
         private const val TICK_THICKNESS = 4
@@ -38,19 +39,14 @@ class Clock : Drawable {
 
     @Suppress("MagicNumber")
     private fun drawTicks(g: Graphics2D, c: Component, originX: Int, originY: Int) {
-        var angle = 0.0f
         val oldTransform = g.transform
 
-        for (tick in 0..<12) {
-            angle = 360.0f / 12.0f * tick
-            val newTransform = AffineTransform().apply {
-                translate(originX.toDouble(), originY.toDouble())
-                rotate(Math.toRadians(angle.toDouble()))
-            }
-            g.transform = newTransform
-            g.color = TICK_COLOR
-            g.stroke = TICK_STROKE
+        g.translate(originX, originY)
+        g.color = TICK_COLOR
+        g.stroke = TICK_STROKE
+        repeat(12) {
             g.drawLine(RADIUS - 18, 0, RADIUS - FRAME_THICKNESS + 2, 0)
+            g.rotate(HOUR_ANGLE)
         }
         g.transform = oldTransform
     }
