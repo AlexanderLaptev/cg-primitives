@@ -19,7 +19,7 @@ class Window : Drawable {
     // Origin is the upper-left corner of the window.
     override fun draw(g: Graphics2D, c: Component, originX: Int, originY: Int) {
         drawOutside(g, originX, originY)
-        drawFrame(g, originX, originY)
+        drawFrames(g, originX, originY)
     }
 
     private fun drawOutside(g: Graphics2D, originX: Int, originY: Int) {
@@ -27,15 +27,21 @@ class Window : Drawable {
         g.fillRect(originX, originY, WIDTH, HEIGHT)
     }
 
-    private fun drawFrame(g: Graphics2D, originX: Int, originY: Int) {
+    private fun drawFrames(g: Graphics2D, originX: Int, originY: Int) {
         g.color = Color.WHITE
         g.stroke = FRAME_STROKE
 
-        g.drawRect(originX, originY, WIDTH, HEIGHT) // Outer border
+        g.drawRect(originX, originY, WIDTH, HEIGHT) // Frame
 
-        // Sections
+        // Horizontal section
         val horizontalRight = originX + WIDTH
         val horizontalY = originY + HORIZONTAL_SECTION_HEIGHT
         g.drawLine(originX, horizontalY, horizontalRight, horizontalY)
+
+        // Vertical sections
+        val verticalX = originX + WIDTH / 2
+        val verticalTop = originY + HORIZONTAL_SECTION_HEIGHT
+        val verticalBottom = originY + HEIGHT
+        g.drawLine(verticalX, verticalTop, verticalX, verticalBottom)
     }
 }
