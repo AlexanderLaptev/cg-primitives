@@ -13,6 +13,7 @@ import javax.swing.JPanel
 /**
  * A panel which draws custom graphics.
  */
+@Suppress("MagicNumber")
 class DrawingPanel : JPanel() {
     private val monitor = Monitor()
 
