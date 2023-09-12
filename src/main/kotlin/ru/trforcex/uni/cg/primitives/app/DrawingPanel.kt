@@ -41,10 +41,10 @@ class DrawingPanel : JPanel() {
         g.setAntialiasingEnabled(true)
         g.background = BACKGROUND_COLOR
         g.clearComponentArea(this)
-        drawStuff(g)
+        drawObjects(g)
     }
 
-    private fun drawStuff(g: Graphics2D) {
+    private fun drawObjects(g: Graphics2D) {
         val centerX = width / 2
         val centerY = height / 2
 
