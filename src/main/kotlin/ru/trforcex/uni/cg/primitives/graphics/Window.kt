@@ -12,20 +12,30 @@ class Window : Drawable {
         private const val FRAME_THICKNESS = 20
         private const val HORIZONTAL_SECTION_HEIGHT = 150
 
+        private const val CLOUD_BASE_Y = 60
+
         private val SKY_COLOR = Color.decode("#98cbe3")
+        private val CLOUD_COLOR = Color.decode("#f5f8fa")
         private val FRAME_COLOR = Color.decode("#fff5ed")
         private val FRAME_STROKE = BasicStroke(FRAME_THICKNESS.toFloat())
     }
 
+    private var cloud = Cloud().apply { color = CLOUD_COLOR }
+
     // Origin is the upper-left corner of the window.
     override fun draw(g: Graphics2D, c: Component, originX: Int, originY: Int) {
-        drawOutside(g, originX, originY)
+        drawOutside(g, c, originX, originY)
         drawFrames(g, originX, originY)
     }
 
-    private fun drawOutside(g: Graphics2D, originX: Int, originY: Int) {
+    private fun drawOutside(g: Graphics2D, c: Component, originX: Int, originY: Int) {
         g.color = SKY_COLOR
         g.fillRect(originX, originY, WIDTH, HEIGHT)
+
+        // Clip the window area
+        g.clipRect(originX, originY, WIDTH, HEIGHT)
+        cloud.draw(g, c, originX + 26, originY + CLOUD_BASE_Y)
+        g.clip = null
     }
 
     private fun drawFrames(g: Graphics2D, originX: Int, originY: Int) {

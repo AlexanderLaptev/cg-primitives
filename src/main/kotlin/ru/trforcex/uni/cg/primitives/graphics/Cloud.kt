@@ -12,10 +12,10 @@ import kotlin.random.nextInt
 class Cloud : Drawable {
     companion object {
         private val CIRCLE_COUNT_RANGE = 4..6
-        private val RADIUS_RANGE = 50..80
-
-        private val COLOR = Color.WHITE
+        private val RADIUS_RANGE = 20..40
     }
+
+    var color = Color.WHITE
 
     private val circles: MutableList<Circle> = LinkedList()
 
@@ -42,7 +42,7 @@ class Cloud : Drawable {
     }
 
     override fun draw(g: Graphics2D, c: Component, originX: Int, originY: Int) {
-        g.color = COLOR
+        g.color = color
         for (circle in circles) {
             with(circle) {
                 g.fillCircle(originX + x, originY + y, radius)
