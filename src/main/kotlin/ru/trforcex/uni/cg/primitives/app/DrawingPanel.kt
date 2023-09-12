@@ -1,6 +1,7 @@
 package ru.trforcex.uni.cg.primitives.app
 
 import ru.trforcex.uni.cg.primitives.graphics.Monitor
+import ru.trforcex.uni.cg.primitives.graphics.Window
 import ru.trforcex.uni.cg.primitives.util.clearComponentArea
 import ru.trforcex.uni.cg.primitives.util.fillPolygonOffset
 import ru.trforcex.uni.cg.primitives.util.setAntialiasingEnabled
@@ -18,6 +19,7 @@ import javax.swing.JPanel
 @Suppress("MagicNumber")
 class DrawingPanel : JPanel() {
     private val monitor = Monitor()
+    private val window = Window()
 
     companion object {
         private val BACKGROUND_COLOR: Color = Color.decode("#dbc7a2")
@@ -75,6 +77,7 @@ class DrawingPanel : JPanel() {
     private fun drawObjects(g: Graphics2D) {
         drawTable(g)
         monitor.draw(g, this, centerX, centerY)
+        window.draw(g, this, 20, 50)
 
         val keyboardX = centerX - KEYBOARD_WIDTH / 2
         val keyboardY = centerY + KEYBOARD_HEIGHT / 2 + KEYBOARD_Y
