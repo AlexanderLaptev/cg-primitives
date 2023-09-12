@@ -13,6 +13,7 @@ class Window : Drawable {
         private const val HORIZONTAL_SECTION_HEIGHT = 150
 
         private val SKY_COLOR = Color.decode("#98cbe3")
+        private val FRAME_COLOR = Color.decode("#fff5ed")
         private val FRAME_STROKE = BasicStroke(FRAME_THICKNESS.toFloat())
     }
 
@@ -28,7 +29,7 @@ class Window : Drawable {
     }
 
     private fun drawFrames(g: Graphics2D, originX: Int, originY: Int) {
-        g.color = Color.WHITE
+        g.color = FRAME_COLOR
         g.stroke = FRAME_STROKE
 
         g.drawRect(originX, originY, WIDTH, HEIGHT) // Frame
