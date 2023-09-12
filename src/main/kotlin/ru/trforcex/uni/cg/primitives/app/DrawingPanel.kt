@@ -18,7 +18,6 @@ class DrawingPanel : JPanel() {
 
     companion object {
         private val BACKGROUND_COLOR: Color = Color.decode("#dbc7a2")
-        private val SKY_COLOR: Color = Color.decode("#a1c3ed")
         private val KEYBOARD_COLOR = Color.decode("#333333")
         private val TABLE_COLOR: Color = Color.decode("#a38967")
 
@@ -29,14 +28,17 @@ class DrawingPanel : JPanel() {
         private const val KEYBOARD_WIDTH = 360
         private const val KEYBOARD_OFFSET = 40
         private const val KEYBOARD_Y = 300
-
-        private const val KEYBOARD_CORD_THICKNESS = 4
-        private const val KEYBOARD_CORD_WIDTH = 30
-        private val KEYBOARD_CORD_STROKE = BasicStroke(KEYBOARD_CORD_THICKNESS.toFloat())
     }
 
+    private var centerX = 0
+    private var centerY = 0
+
     private lateinit var tablePolygon: Polygon
-    private lateinit var keyboardPolygon: Polygon
+    private var keyboardPolygon = Polygon(
+        intArrayOf(0, KEYBOARD_OFFSET, KEYBOARD_WIDTH - KEYBOARD_OFFSET, KEYBOARD_WIDTH),
+        intArrayOf(0, -KEYBOARD_HEIGHT, -KEYBOARD_HEIGHT, 0),
+        4
+    )
 
     override fun paintComponent(g: Graphics?) {
         g as Graphics2D
@@ -52,12 +54,11 @@ class DrawingPanel : JPanel() {
         super.doLayout()
         // This method is early enough for us to update all polygons and paths before any rendering occurs.
         updatePolygonsAndPaths()
+        centerX = width / 2
+        centerY = height / 2
     }
 
     private fun drawObjects(g: Graphics2D) {
-        val centerX = width / 2
-        val centerY = height / 2
-
         drawTable(g)
         monitor.draw(g, this, centerX, centerY)
 
@@ -77,22 +78,15 @@ class DrawingPanel : JPanel() {
             intArrayOf(height, height - TABLE_HEIGHT, height - TABLE_HEIGHT, height),
             4
         )
-        keyboardPolygon = Polygon(
-            intArrayOf(0, KEYBOARD_OFFSET, KEYBOARD_WIDTH - KEYBOARD_OFFSET, KEYBOARD_WIDTH),
-            intArrayOf(0, -KEYBOARD_HEIGHT, -KEYBOARD_HEIGHT, 0),
-            4
-        )
         repaint()
     }
 
     private fun drawTable(g: Graphics2D) {
-        if (!this::tablePolygon.isInitialized) updatePolygons()
         g.color = TABLE_COLOR
         g.fillPolygon(tablePolygon)
     }
 
     private fun drawKeyboard(g: Graphics2D, x: Int, y: Int) {
-        if (!this::keyboardPolygon.isInitialized) updatePolygons()
         g.color = KEYBOARD_COLOR
         g.fillPolygonOffset(keyboardPolygon, x, y)
     }
