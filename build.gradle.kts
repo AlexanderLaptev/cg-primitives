@@ -1,10 +1,13 @@
 plugins {
     kotlin("jvm") version "1.9.10"
     id("application")
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "ru.trforcex.uni.cg"
-version = "1.0-SNAPSHOT"
+version = "1.0.0"
+
+extra["mainClass"] = "ru.trforcex.uni.cg.primitives.launch.LaunchKt"
 
 repositories {
     mavenCentral()
@@ -19,7 +22,7 @@ tasks.test {
 }
 
 application {
-    mainClass.set("ru.trforcex.uni.cg.primitives.launch.LaunchKt")
+    mainClass.set(project.extra["mainClass"] as String)
 }
 
 sourceSets {
