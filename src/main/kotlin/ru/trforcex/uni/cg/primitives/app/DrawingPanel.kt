@@ -30,7 +30,7 @@ class DrawingPanel : JPanel() {
     private val clock = Clock()
 
     companion object {
-        private const val REDRAW_TIMER_DELAY = 33 // ~30 FPS
+        private const val REDRAW_TIMER_DELAY = 16 // ~60 FPS
         private val PROGRESS_DELTA_RANGE = 1..3
         private val PROGRESS_TIME_RANGE = 1400..5500
 

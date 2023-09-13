@@ -25,7 +25,7 @@ class Window : Drawable {
     }
 
     private lateinit var cloud: Cloud
-    private var cloudX = 0
+    private var cloudX = 0.0f
     private var cloudY = 0
     private var cloudSpeed = 0
 
@@ -45,7 +45,7 @@ class Window : Drawable {
 
         // Clip the window area
         g.clipRect(originX, originY, WIDTH, HEIGHT)
-        cloud.draw(g, c, originX + cloudX, originY + cloudY)
+        cloud.draw(g, c, originX + cloudX.roundToInt(), originY + cloudY)
         g.clip = null
     }
 
@@ -63,7 +63,7 @@ class Window : Drawable {
 
     private fun generateNewCloud() {
         cloud = Cloud().apply { color = CLOUD_COLOR }
-        cloudX = -cloud.maxX
+        cloudX = -cloud.maxX.toFloat()
         cloudY = Random.nextInt(CLOUD_Y_RANGE)
         cloudSpeed = Random.nextInt(CLOUD_SPEED_RANGE)
     }
