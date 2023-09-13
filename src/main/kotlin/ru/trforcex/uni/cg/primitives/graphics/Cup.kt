@@ -20,7 +20,7 @@ class Cup : Drawable {
         private val HANDLE_STROKE = BasicStroke(HANDLE_THICKNESS.toFloat())
 
         private const val ICON_TEXT = "\u2665" // ♥
-        private const val ICON_Y_OFFSET = 6
+        private const val ICON_Y_OFFSET = 4
         private val ICON_FONT = Font("Segoe UI", Font.PLAIN, 54)
 
         private val OUTSIDE_COLOR = Color.WHITE
