@@ -45,7 +45,7 @@ class Window : Drawable {
 
         // Clip the window area
         g.clipRect(originX, originY, WIDTH, HEIGHT)
-        cloud.draw(g, c, originX + cloudX.roundToInt(), originY + cloudY)
+        cloud.draw(g, c, originX + cloudX.toInt(), originY + cloudY)
         g.clip = null
     }
 
@@ -57,7 +57,7 @@ class Window : Drawable {
     @Suppress("MagicNumber")
     fun animateClouds(deltaTime: Int) {
         val seconds = deltaTime / 1000.0f
-        cloudX += (cloudSpeed * seconds).roundToInt()
+        cloudX += cloudSpeed * seconds
         if (cloudX > WIDTH + cloud.firstRadius) generateNewCloud()
     }
 
