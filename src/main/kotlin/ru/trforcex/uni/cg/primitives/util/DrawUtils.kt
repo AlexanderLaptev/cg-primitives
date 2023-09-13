@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package ru.trforcex.uni.cg.primitives.util
 
 import java.awt.Component

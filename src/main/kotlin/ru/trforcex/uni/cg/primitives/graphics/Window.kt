@@ -54,8 +54,10 @@ class Window : Drawable {
      *
      * @param deltaTime Delta time in milliseconds
      */
+    @Suppress("MagicNumber")
     fun animateClouds(deltaTime: Int) {
-        cloudX += (cloudSpeed * deltaTime / 1000.0f).roundToInt()
+        val seconds = deltaTime / 1000.0f
+        cloudX += (cloudSpeed * seconds).roundToInt()
         if (cloudX > WIDTH + cloud.firstRadius) generateNewCloud()
     }
 

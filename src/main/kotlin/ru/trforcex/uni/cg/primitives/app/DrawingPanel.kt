@@ -96,8 +96,8 @@ class DrawingPanel : JPanel() {
         progressTimer.start()
     }
 
-    @Suppress("UnusedParameter")
-    private fun progressTimerListener(e: ActionEvent?) {
+    @Suppress("UNUSED_PARAMETER")
+    private fun progressTimerListener(ignored: ActionEvent?) {
         monitor.progress += Random.nextInt(PROGRESS_DELTA_RANGE)
         progressTimer.delay = Random.nextInt(PROGRESS_DELTA_RANGE)
         progressTimer.start()

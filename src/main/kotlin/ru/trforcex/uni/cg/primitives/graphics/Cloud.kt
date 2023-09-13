@@ -9,6 +9,7 @@ import java.util.*
 import kotlin.random.Random
 import kotlin.random.nextInt
 
+@Suppress("MemberVisibilityCanBePrivate")
 class Cloud : Drawable {
     companion object {
         private val CIRCLE_COUNT_RANGE = 4..6
@@ -22,6 +23,8 @@ class Cloud : Drawable {
     val firstRadius: Int get() = circles.first.radius
     val minX: Int get() = circles.first.x - circles.first.radius
     val maxX: Int get() = circles.last.x + circles.last.radius
+
+    @Suppress("unused")
     val width: Int get() = maxX - minX
 
     init {

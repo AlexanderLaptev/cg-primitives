@@ -9,11 +9,11 @@ import java.awt.Graphics2D
 
 class Monitor : Drawable {
     companion object {
-        val CASE_COLOR = Color.decode("#333333")
-        val STAND_COLOR = Color.decode("#2a2a2a")
-        val BASE_COLOR = Color.decode("#373737")
-        val BSOD_TEXT_COLOR = Color.WHITE
-        val SCREEN_COLOR = Color.decode("#0078d7") // Windows 10 BSOD color.
+        val CASE_COLOR: Color = Color.decode("#333333")
+        val STAND_COLOR: Color = Color.decode("#2a2a2a")
+        val BASE_COLOR: Color = Color.decode("#373737")
+        val BSOD_TEXT_COLOR: Color = Color.WHITE
+        val SCREEN_COLOR: Color = Color.decode("#0078d7") // Windows 10 BSOD color.
 
         const val WIDTH = 550
         const val HEIGHT = WIDTH / 16 * 9
@@ -33,20 +33,30 @@ class Monitor : Drawable {
         private const val BASE_Y_OFFSET = 20
 
         private const val BSOD_TEXT_FACE = ":("
+
+        @Suppress("GrazieInspection")
         private val BSOD_TEXT_MESSAGE_LINES = """
             Your  PC  ran into a problem and needs
             to  restart.  We're  just  collecting some
             error   info,  and  then  we'll  restart  for
             you.
         """.trimIndent().lines()
+
         private val BSOD_FACE_FONT = Font("Segoe UI", Font.PLAIN, 80)
         private val BSOD_MESSAGE_FONT = Font("Segoe UI", Font.PLAIN, 20)
         private val BSOD_PROGRESS_FONT = Font("Segoe UI", Font.PLAIN, 26)
+
+        private const val BSOD_LEFT = 30
+        private const val BSOD_FACE_Y = -40
+        private const val BSOD_MESSAGE_TOP_PADDING = 8
+        private const val BSOD_MESSAGE_LINE_SPACING = 3
+        private const val BSOD_PROGRESS_TOP_PADDING = 6
     }
 
-    private val progressText: String get() {
-        return "$progress% complete"
-    }
+    private val progressText: String
+        get() {
+            return "$progress% complete"
+        }
     var progress: Int = 0
 
     override fun draw(g: Graphics2D, c: Component, originX: Int, originY: Int) {
@@ -62,23 +72,23 @@ class Monitor : Drawable {
 
     private fun drawText(g: Graphics2D, originX: Int, originY: Int) {
         g.color = BSOD_TEXT_COLOR
-        val x = originX - SCREEN_WIDTH / 2 + 30
+        val x = originX - SCREEN_WIDTH / 2 + BSOD_LEFT
 
         // Sad face
         g.font = BSOD_FACE_FONT
-        g.drawString(BSOD_TEXT_FACE, x, originY - 40)
+        g.drawString(BSOD_TEXT_FACE, x, originY + BSOD_FACE_Y)
 
         // Message
         var lastY = 0
         g.font = BSOD_MESSAGE_FONT
         for ((i, line) in BSOD_TEXT_MESSAGE_LINES.withIndex()) {
-            lastY = originY + 8 + (BSOD_MESSAGE_FONT.size + 3) * i
+            lastY = originY + BSOD_MESSAGE_TOP_PADDING + (BSOD_MESSAGE_FONT.size + BSOD_MESSAGE_LINE_SPACING) * i
             g.drawString(line, x, lastY)
         }
 
         // Progress
         g.font = BSOD_PROGRESS_FONT
-        g.drawString(progressText, x, lastY + BSOD_PROGRESS_FONT.size + 6)
+        g.drawString(progressText, x, lastY + BSOD_PROGRESS_FONT.size + BSOD_PROGRESS_TOP_PADDING)
     }
 
     private fun drawCase(g: Graphics2D, originX: Int, originY: Int) {
