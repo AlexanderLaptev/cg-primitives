@@ -93,15 +93,11 @@ class DrawingPanel : JPanel() {
     }
 
     private fun drawObjects(g: Graphics2D) {
+        window.draw(g, this, WINDOW_X, WINDOW_Y)
         drawMonitorCable(g)
         drawTable(g)
         monitor.draw(g, this, centerX, centerY)
-        window.draw(g, this, WINDOW_X, WINDOW_Y)
-
-        val keyboardX = centerX - KEYBOARD_WIDTH / 2
-        val keyboardY = centerY + KEYBOARD_HEIGHT / 2 + KEYBOARD_Y
-        drawKeyboard(g, keyboardX, keyboardY)
-
+        drawKeyboard(g)
         cup.draw(g, this, CUP_X, height - CUP_Y_BOTTOM)
         clock.draw(g, this, CLOCK_X, CLOCK_Y)
     }
@@ -149,9 +145,11 @@ class DrawingPanel : JPanel() {
         g.fillPolygon(tablePolygon)
     }
 
-    private fun drawKeyboard(g: Graphics2D, x: Int, y: Int) {
+    private fun drawKeyboard(g: Graphics2D) {
+        val keyboardX = centerX - KEYBOARD_WIDTH / 2
+        val keyboardY = centerY + KEYBOARD_HEIGHT / 2 + KEYBOARD_Y
         g.color = KEYBOARD_COLOR
-        g.fillPolygonOffset(keyboardPolygon, x, y)
+        g.fillPolygonOffset(keyboardPolygon, keyboardX, keyboardY)
         drawKeyboardCord(g)
     }
 
