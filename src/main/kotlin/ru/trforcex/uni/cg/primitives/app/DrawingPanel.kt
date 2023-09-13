@@ -49,6 +49,9 @@ class DrawingPanel : JPanel() {
             BasicStroke.JOIN_MITER
         )
 
+        private const val MONITOR_CABLE_THICKNESS = 7
+        private val MONITOR_CABLE_STROKE = BasicStroke(MONITOR_CABLE_THICKNESS.toFloat())
+
         private const val CUP_X = 260
         private const val CUP_Y_BOTTOM = 120
 
@@ -86,6 +89,7 @@ class DrawingPanel : JPanel() {
     }
 
     private fun drawObjects(g: Graphics2D) {
+        drawMonitorCable(g)
         drawTable(g)
         monitor.draw(g, this, centerX, centerY)
         window.draw(g, this, 20, 50)
@@ -96,6 +100,13 @@ class DrawingPanel : JPanel() {
 
         cup.draw(g, this, CUP_X, height - CUP_Y_BOTTOM)
         clock.draw(g, this, CLOCK_X, CLOCK_Y)
+    }
+
+    private fun drawMonitorCable(g: Graphics2D) {
+        g.color = Monitor.STAND_COLOR
+        g.stroke = MONITOR_CABLE_STROKE
+        val x = centerX - Monitor.WIDTH / 2 + 140
+        g.drawLine(x, centerY + Monitor.HEIGHT / 2, x + 2, height - TABLE_HEIGHT)
     }
 
     override fun setSize(width: Int, height: Int) {
