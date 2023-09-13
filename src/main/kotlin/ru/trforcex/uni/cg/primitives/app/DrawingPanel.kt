@@ -12,8 +12,12 @@ import java.awt.Color
 import java.awt.Graphics
 import java.awt.Graphics2D
 import java.awt.Polygon
+import java.awt.event.ActionEvent
 import java.awt.geom.Path2D
 import javax.swing.JPanel
+import javax.swing.Timer
+import kotlin.random.Random
+import kotlin.random.nextInt
 
 /**
  * A panel which draws custom graphics.
@@ -26,6 +30,10 @@ class DrawingPanel : JPanel() {
     private val clock = Clock()
 
     companion object {
+        private const val REDRAW_TIMER_DELAY = 42 // ~24 FPS
+        private val PROGRESS_DELTA_RANGE = 1..3
+        private val PROGRESS_TIME_RANGE = 1400..5500
+
         private val BACKGROUND_COLOR: Color = Color.decode("#dbc7a2")
         private val KEYBOARD_COLOR = Color.decode("#333333")
         private val KEYBOARD_CORD_COLOR = Color.decode("#2c2c2c")
@@ -73,6 +81,26 @@ class DrawingPanel : JPanel() {
         4
     )
     private lateinit var keyboardCordCurve: Path2D.Float
+
+    private val redrawTimer = Timer(REDRAW_TIMER_DELAY) {
+        repaint()
+    }
+
+    private val progressTimer: Timer = Timer(Random.nextInt(PROGRESS_TIME_RANGE), this::progressTimerListener)
+
+    init {
+        redrawTimer.isRepeats = true
+        progressTimer.isRepeats = false
+        redrawTimer.start()
+        progressTimer.start()
+    }
+
+    @Suppress("UnusedParameter")
+    private fun progressTimerListener(e: ActionEvent?) {
+        monitor.progress += Random.nextInt(PROGRESS_DELTA_RANGE)
+        progressTimer.delay = Random.nextInt(PROGRESS_DELTA_RANGE)
+        progressTimer.start()
+    }
 
     override fun paintComponent(g: Graphics?) {
         g as Graphics2D

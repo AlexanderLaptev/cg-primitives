@@ -45,10 +45,9 @@ class Monitor : Drawable {
     }
 
     private val progressText: String get() {
-        val percent = (progress * 100.0f).toInt()
-        return "$percent% complete"
+        return "$progress% complete"
     }
-    var progress: Float = 0.0f
+    var progress: Int = 0
 
     override fun draw(g: Graphics2D, c: Component, originX: Int, originY: Int) {
         // Calculations
