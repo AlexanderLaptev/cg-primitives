@@ -10,6 +10,9 @@ import java.awt.Graphics2D
 class Monitor : Drawable {
     companion object {
         private val CASE_COLOR = Color.decode("#333333")
+        private val STAND_COLOR = Color.decode("#2a2a2a")
+        private val BASE_COLOR = Color.decode("#373737")
+        private val BSOD_TEXT_COLOR = Color.WHITE
         private val SCREEN_COLOR = Color.decode("#0078d7") // Windows 10 BSOD color.
 
         private const val WIDTH = 550
@@ -22,16 +25,13 @@ class Monitor : Drawable {
         private const val SCREEN_WIDTH = WIDTH - BORDER_THICKNESS_SIDES * 2
         private const val SCREEN_HEIGHT = HEIGHT - BORDER_THICKNESS_TOP - BORDER_THICKNESS_BOTTOM
 
-        private val STAND_COLOR = Color.decode("#2a2a2a")
         private const val STAND_HEIGHT = 60
         private const val STAND_WIDTH = 70
 
-        private val BASE_COLOR = Color.decode("#373737")
         private const val BASE_WIDTH = 210
         private const val BASE_HEIGHT = 60
         private const val BASE_Y_OFFSET = 20
 
-        private val BSOD_TEXT_COLOR = Color.WHITE
         private const val BSOD_TEXT_FACE = ":("
         private val BSOD_TEXT_MESSAGE_LINES = """
             Your  PC  ran into a problem and needs
