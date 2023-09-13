@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "ru.trforcex.uni.cg"
-version = "1.0.0"
+version = "1.1.0"
 
 extra["mainClass"] = "ru.trforcex.uni.cg.primitives.launch.LaunchKt"
 
