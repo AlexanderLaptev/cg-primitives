@@ -4,7 +4,6 @@ import java.awt.BasicStroke
 import java.awt.Color
 import java.awt.Component
 import java.awt.Graphics2D
-import kotlin.math.roundToInt
 import kotlin.random.Random
 import kotlin.random.nextInt
 
