@@ -15,6 +15,8 @@ class Cup : Drawable {
         private const val HANDLE_THICKNESS = 6
         private const val HANDLE_Y = 16
         private const val HANDLE_SIZE = 36
+        private const val HANDLE_START_ANGLE = 90
+        private const val HANDLE_ARC_ANGLE = 180
         private val HANDLE_STROKE = BasicStroke(HANDLE_THICKNESS.toFloat())
 
         private const val ICON_TEXT = "\u2665" // ♥
@@ -36,7 +38,14 @@ class Cup : Drawable {
 
         // Handle
         g.stroke = HANDLE_STROKE
-        g.drawArc(originX - HANDLE_SIZE / 2, originY + HANDLE_Y, HANDLE_SIZE, HANDLE_SIZE, 90, 180)
+        g.drawArc(
+            originX - HANDLE_SIZE / 2,
+            originY + HANDLE_Y,
+            HANDLE_SIZE,
+            HANDLE_SIZE,
+            HANDLE_START_ANGLE,
+            HANDLE_ARC_ANGLE
+        )
 
         // Icon
         g.color = ICON_COLOR
