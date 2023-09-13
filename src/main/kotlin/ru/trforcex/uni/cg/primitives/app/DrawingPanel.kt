@@ -34,7 +34,7 @@ class DrawingPanel : JPanel() {
         private const val TABLE_HEIGHT = 140
         private const val TABLE_OFFSET = 200
 
-        private const val WINDOW_X = 20
+        private const val WINDOW_X = 130
         private const val WINDOW_Y = 50
 
         private const val KEYBOARD_HEIGHT = 50
