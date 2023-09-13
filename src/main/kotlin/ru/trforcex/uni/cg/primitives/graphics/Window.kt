@@ -4,6 +4,9 @@ import java.awt.BasicStroke
 import java.awt.Color
 import java.awt.Component
 import java.awt.Graphics2D
+import kotlin.math.roundToInt
+import kotlin.random.Random
+import kotlin.random.nextInt
 
 class Window : Drawable {
     companion object {
@@ -12,15 +15,23 @@ class Window : Drawable {
         private const val FRAME_THICKNESS = 20
         private const val HORIZONTAL_SECTION_HEIGHT = 150
 
-        private const val CLOUD_BASE_Y = 60
+        private val CLOUD_Y_RANGE = 40..150
+        private val CLOUD_SPEED_RANGE = 10..80
 
         private val SKY_COLOR = Color.decode("#98cbe3")
         private val CLOUD_COLOR = Color.decode("#f5f8fa")
-        private val FRAME_COLOR = Color.decode("#fff5ed")
+        private val FRAME_COLOR = Color.decode("#dbd9d7")
         private val FRAME_STROKE = BasicStroke(FRAME_THICKNESS.toFloat())
     }
 
-    private var cloud = Cloud().apply { color = CLOUD_COLOR }
+    private lateinit var cloud: Cloud
+    private var cloudX = 0
+    private var cloudY = 0
+    private var cloudSpeed = 0
+
+    init {
+        generateNewCloud()
+    }
 
     // Origin is the upper-left corner of the window.
     override fun draw(g: Graphics2D, c: Component, originX: Int, originY: Int) {
@@ -34,8 +45,25 @@ class Window : Drawable {
 
         // Clip the window area
         g.clipRect(originX, originY, WIDTH, HEIGHT)
-        cloud.draw(g, c, originX + 26, originY + CLOUD_BASE_Y)
+        cloud.draw(g, c, originX + cloudX, originY + cloudY)
         g.clip = null
+    }
+
+    /**
+     * Moves the cloud and regenerates it if it goes offscreen.
+     *
+     * @param deltaTime Delta time in milliseconds
+     */
+    fun animateClouds(deltaTime: Int) {
+        cloudX += (cloudSpeed * deltaTime / 1000.0f).roundToInt()
+        if (cloudX > WIDTH + cloud.firstRadius) generateNewCloud()
+    }
+
+    private fun generateNewCloud() {
+        cloud = Cloud().apply { color = CLOUD_COLOR }
+        cloudX = -cloud.maxX
+        cloudY = Random.nextInt(CLOUD_Y_RANGE)
+        cloudSpeed = Random.nextInt(CLOUD_SPEED_RANGE)
     }
 
     private fun drawFrames(g: Graphics2D, originX: Int, originY: Int) {

@@ -30,7 +30,7 @@ class DrawingPanel : JPanel() {
     private val clock = Clock()
 
     companion object {
-        private const val REDRAW_TIMER_DELAY = 42 // ~24 FPS
+        private const val REDRAW_TIMER_DELAY = 33 // ~30 FPS
         private val PROGRESS_DELTA_RANGE = 1..3
         private val PROGRESS_TIME_RANGE = 1400..5500
 
@@ -83,6 +83,7 @@ class DrawingPanel : JPanel() {
     private lateinit var keyboardCordCurve: Path2D.Float
 
     private val redrawTimer = Timer(REDRAW_TIMER_DELAY) {
+        window.animateClouds(REDRAW_TIMER_DELAY)
         repaint()
     }
 

@@ -15,9 +15,14 @@ class Cloud : Drawable {
         private val RADIUS_RANGE = 20..40
     }
 
-    var color = Color.WHITE
+    var color: Color = Color.WHITE
 
-    private val circles: MutableList<Circle> = LinkedList()
+    private val circles: LinkedList<Circle> = LinkedList()
+
+    val firstRadius: Int get() = circles.first.radius
+    val minX: Int get() = circles.first.x - circles.first.radius
+    val maxX: Int get() = circles.last.x + circles.last.radius
+    val width: Int get() = maxX - minX
 
     init {
         generateCircles()
