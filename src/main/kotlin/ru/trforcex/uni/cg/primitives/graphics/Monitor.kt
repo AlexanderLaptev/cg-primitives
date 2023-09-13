@@ -9,14 +9,14 @@ import java.awt.Graphics2D
 
 class Monitor : Drawable {
     companion object {
-        private val CASE_COLOR = Color.decode("#333333")
-        private val STAND_COLOR = Color.decode("#2a2a2a")
-        private val BASE_COLOR = Color.decode("#373737")
-        private val BSOD_TEXT_COLOR = Color.WHITE
-        private val SCREEN_COLOR = Color.decode("#0078d7") // Windows 10 BSOD color.
+        val CASE_COLOR = Color.decode("#333333")
+        val STAND_COLOR = Color.decode("#2a2a2a")
+        val BASE_COLOR = Color.decode("#373737")
+        val BSOD_TEXT_COLOR = Color.WHITE
+        val SCREEN_COLOR = Color.decode("#0078d7") // Windows 10 BSOD color.
 
-        private const val WIDTH = 550
-        private const val HEIGHT = WIDTH / 16 * 9
+        const val WIDTH = 550
+        const val HEIGHT = WIDTH / 16 * 9
 
         private const val BORDER_THICKNESS_TOP = 6
         private const val BORDER_THICKNESS_SIDES = 6
