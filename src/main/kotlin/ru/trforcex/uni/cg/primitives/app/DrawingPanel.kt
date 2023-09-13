@@ -50,6 +50,7 @@ class DrawingPanel : JPanel() {
         )
 
         private const val MONITOR_CABLE_THICKNESS = 7
+        private const val MONITOR_CABLE_X_OFFSET = 140
         private val MONITOR_CABLE_STROKE = BasicStroke(MONITOR_CABLE_THICKNESS.toFloat())
 
         private const val CUP_X = 260
@@ -105,7 +106,7 @@ class DrawingPanel : JPanel() {
     private fun drawMonitorCable(g: Graphics2D) {
         g.color = Monitor.STAND_COLOR
         g.stroke = MONITOR_CABLE_STROKE
-        val x = centerX - Monitor.WIDTH / 2 + 140
+        val x = centerX - Monitor.WIDTH / 2 + MONITOR_CABLE_X_OFFSET
         g.drawLine(x, centerY + Monitor.HEIGHT / 2, x + 2, height - TABLE_HEIGHT)
     }
 
