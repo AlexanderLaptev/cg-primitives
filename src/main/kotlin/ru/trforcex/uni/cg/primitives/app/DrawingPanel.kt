@@ -34,6 +34,9 @@ class DrawingPanel : JPanel() {
         private const val TABLE_HEIGHT = 140
         private const val TABLE_OFFSET = 200
 
+        private const val WINDOW_X = 20
+        private const val WINDOW_Y = 50
+
         private const val KEYBOARD_HEIGHT = 50
         private const val KEYBOARD_WIDTH = 360
         private const val KEYBOARD_OFFSET = 40
@@ -93,7 +96,7 @@ class DrawingPanel : JPanel() {
         drawMonitorCable(g)
         drawTable(g)
         monitor.draw(g, this, centerX, centerY)
-        window.draw(g, this, 20, 50)
+        window.draw(g, this, WINDOW_X, WINDOW_Y)
 
         val keyboardX = centerX - KEYBOARD_WIDTH / 2
         val keyboardY = centerY + KEYBOARD_HEIGHT / 2 + KEYBOARD_Y
